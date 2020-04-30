@@ -105,7 +105,7 @@ class fun extends React.Component
         this.intervalId = setTimeout(()=>this.findCurrentLocationAsync(phone_number), 10 * 1000);
       }
       getValue = async (lat, lon) => {
-          const key='b654b06987184cd59b409d4fc87a9318';
+          const key='';
           var url='https://api.opencagedata.com/geocode/v1/json?q='+lat+ '+' +lon+'&key='+key;
           const res=await fetch(url,{
             method: 'GET'
