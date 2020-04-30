@@ -4,7 +4,7 @@ import * as SecureStore from 'expo-secure-store';
 
 function checkCredentials(user, password)
 {
-  if(user=='Khushboo' && password=='280397')
+  if(user=='' && password=='')
   {
     return true;
   }
