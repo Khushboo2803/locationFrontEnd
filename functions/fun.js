@@ -83,7 +83,7 @@ class fun extends React.Component
           const location = await Location.getCurrentPositionAsync({
             accuracy: Location.Accuracy.BestForNavigation,
           });
-          if(Math.abs(this.state.lat-location.coords.latitude>0.001)|| Math.abs(this.state.lon-location.coords.longitude>0.001))
+          if(Math.abs(this.state.lat-location.coords.latitude)>0.001|| Math.abs(this.state.lon-location.coords.longitude)>0.001)
           {
             addressInt={
               lat: location.coords.latitude,
