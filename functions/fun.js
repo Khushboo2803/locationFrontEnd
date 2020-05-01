@@ -102,7 +102,7 @@ class fun extends React.Component
       };
       
       startLoc =async(phone_number) => {
-        this.intervalId = setTimeout(()=>this.findCurrentLocationAsync(phone_number), 10 * 1000);
+        this.findCurrentLocationAsync(phone_number);
       }
       getValue = async (lat, lon) => {
           const key='';
