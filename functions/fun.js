@@ -23,8 +23,11 @@ class fun extends React.Component
           ar: '',
           lat: 0,
           lon: 0,
+          latitude: null,
+          longitude: null,
           address: '',
           interval: 0,
+          timestamp:0,
           addresName: [{name:'',timestamp:''}]
         };
       }
@@ -93,27 +96,30 @@ class fun extends React.Component
         this.state.allowed = true;
         //define location variable here
        
-      Geolocation.watchPosition((data)=>{
-         this.state.location=data
-       });
-       var location=this.state.location;
-       console.log("location ",location);
+      Geolocation.getCurrentPosition(data=>{
+         this.state.latitude=data.coords.latitude;
+         this.state.longitude=data.coords.longitude;
+         this.state.timestamp=data.timestamp;
+       })
+       var latitude=this.state.latitude;
+       var longitude=this.state.longitude;
+       console.log("location ",latitude);
         
         
-        // if (Math.abs(this.state.lat - location.coords.latitude) > 0.001 ||
-        //   Math.abs(this.state.lon - location.coords.longitude) > 0.001) {
-        //   addressInt = {
-        //     lat: location.coords.latitude,
-        //     lon: location.coords.longitude,
-        //     timestamp: new Date(location.timestamp).toLocaleString()
-        //   }
-        //   await db.updateAddress(result, JSON.stringify(addressInt));
-        //   this.state.interval = this.state.interval + 1;
-        //   this.setState({
-        //     lat: location.coords.latitude,
-        //     lon: location.coords.longitude,
-        //   });
-        // }
+         if (Math.abs(this.state.lat - latitude) > 0.001 ||
+           Math.abs(this.state.lon - longitude) > 0.001) {
+           addressInt = {
+             lat: latitude,
+             lon: longitude,
+             timestamp: new Date(this.state.timestamp).toLocaleString()
+           }
+           await db.updateAddress(result, JSON.stringify(addressInt));
+           this.state.interval = this.state.interval + 1;
+           this.setState({
+             lat: latitude,
+             lon: longitude,
+           });
+         }
         this.intervalId = setTimeout(() => this.findCurrentLocationAsync(phone_number), 10 * 1000);
       }
     };  
