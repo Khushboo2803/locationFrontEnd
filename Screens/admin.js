@@ -2,15 +2,7 @@ import React from 'react';
 import { Button, View, Text, TextInput, StyleSheet, TouchableOpacity, Alert , BackHandler, Image, Dimensions, KeyboardAvoidingView, ImageBackground} from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 
-//             onPress={()=>{
-//               if(checkCredentials(value, pass))
-//               {
-//                 navigation.navigate('list');
-//               }
-//               else{
-//                 Alert.alert("Wrong Credentials");
-//               }
-//             }}>
+
 
 const device_width= Dimensions.get('window').width;
 const device_height=Dimensions.get('window').height;

@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
-import {Text, ScrollView, TouchableOpacity, View, Alert, Button, StyleSheet} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Text, ScrollView, TouchableOpacity, View, Alert, Button, StyleSheet, BackHandler} from 'react-native';
 import styles from './style.js';
 import fun from '../functions/fun.js';
 var arr=[];
 var addressName=[];
 
-async function showDetails(location) {  
+async function showDetails(location) { 
+  
   location = JSON.parse(location);
   const response = await fun.getValue(location.lat, location.lon); 
   Alert.alert("Address", response);

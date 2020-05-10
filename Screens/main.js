@@ -37,7 +37,8 @@ class LoginScreen extends Component
             placeholderText: 'Enter your number....',
             appState: AppState.currentState,
             user:'',
-            text:''
+            text:'',
+            uri : require('../assets/color.jpg')
         }
     }
 
@@ -225,7 +226,7 @@ class LoginScreen extends Component
     }
 
     increaseHeightOfLogin = () => {
-
+        this.setState({uri: require('../assets/env.jpeg')})
         this.setState({ placeholderText: '92123456789' })
         Animated.timing(this.loginHeight, {
             toValue: SCREEN_HEIGHT,
@@ -238,6 +239,7 @@ class LoginScreen extends Component
     }
 
     decreaseHeightOfLogin = () => {
+        this.setState({uri: require('../assets/color.jpg')})
         Keyboard.dismiss()
         Animated.timing(this.loginHeight, {
             toValue: 150,
@@ -285,7 +287,7 @@ class LoginScreen extends Component
                         opacity: headerBackArrowOpacity//animated
                     }}
                 >
-                    
+                  
                     <TouchableOpacity
                         onPress={() => 
                         { 
@@ -296,9 +298,10 @@ class LoginScreen extends Component
                     >
                         <Image 
                             source={require('../assets/back-arrow.png')}
-                            style={{height:25, width:25}}
+                            style={{height:45, width:45}}
                         />
                     </TouchableOpacity>
+                    
                 </Animated.View>
 
                 <Animated.View
@@ -322,7 +325,7 @@ class LoginScreen extends Component
                                         <Image
                                             source={require('../assets/right-arrow.png')}
                                             style={{
-                                                height:35, width:35, marginLeft:3
+                                                height:55, width:55, marginLeft:3
                                             }}
                                         />
                         </TouchableOpacity>
@@ -338,23 +341,22 @@ class LoginScreen extends Component
                     <TouchableOpacity onPress={()=>{fun.whatsApp()}}>
                         <Image source={require('../assets/whatsapp.png')}
                         style={{
-                            marginLeft:'85%', height:40, width:40, marginBottom:'20%'
+                            marginLeft:'85%', height:40, width:40, marginBottom:'0%'
                         }}
                         />
                     </TouchableOpacity>
-                        <Animatable.View
+                         <Animatable.View
                             animation="zoomIn" iterationCount={1}
-                            style={{ backgroundColor: 'white', height: 100, width: 100, alignItems: 'center', justifyContent: 'center', borderRadius:8}}>
-                            <Text style={{ fontWeight: 'bold', fontSize: 19 }}>Trails</Text>
-                            <Text style={{ fontWeight: 'bold', fontSize: 19 }}> &</Text>
-                            <Text style={{ fontWeight: 'bold', fontSize: 19 }}>Trial</Text>
-                        </Animatable.View>
+                            style={{ alignItems: 'center', justifyContent: 'center', marginTop:7}}>
+                            <Text style={{ fontWeight: 'bold', fontSize: 12, fontFamily:'monospace', color:'navy' }}>Stay Home,</Text>
+                            <Text style={{ fontWeight: 'bold', fontSize: 12, fontFamily:'monospace', color:'navy' }}>Stay Safe!</Text>
+                        </Animatable.View> 
                         
                     </View>
 
                     {/** BOTTOM HALF **/}
                     <Animatable.View animation="slideInUp" iterationCount={1}>
-
+                    
                         <Animated.View
                             style={{
                                 height: this.loginHeight,//animated
@@ -362,6 +364,13 @@ class LoginScreen extends Component
                                 
                             }}
                         >
+                            <ImageBackground
+                  source={this.state.uri}
+                  style={{
+                      width:'100%',
+                      height:'100%'
+                  }}
+                  > 
                             <Animated.View
                                 style={{
                                     opacity: headerTextOpacity,//animated
@@ -370,11 +379,12 @@ class LoginScreen extends Component
                                     marginTop: marginTop,//animated
                                 }}
                             >
+                                
                                 <Text
                                     style={{ fontSize: 24 }}
                                 >Get moving with Trails&Trial</Text>
                             </Animated.View>
-
+                                            
                             <TouchableOpacity
                                 onPress={() => this.increaseHeightOfLogin()}
                             >
@@ -391,16 +401,21 @@ class LoginScreen extends Component
                                             position: 'absolute',
                                             bottom: titleTextBottom,//animated
                                             left: titleTextLeft,//animated
-                                            opacity: titleTextOpacity//animated
+                                            opacity: titleTextOpacity,
+                                            fontFamily:'monospace',
+                                            color:'navy',
+                                            backgroundColor:'papayawhip',
+                                            borderRadius:9,
+                                            borderWidth:3
                                         }}
                                     >
-                                        Enter your number..
+                                        ..Enter your number..
                                 </Animated.Text>
 
 
                                     <Image
                                         source={require('../assets/india.png')}
-                                        style={{ height: 24, width: 24, resizeMode: 'contain' }}
+                                        style={{ height: 24, width: 24, resizeMode: 'contain', marginTop:10 }}
                                     />
                                     <Animated.View
                                         pointerEvents="none"
@@ -410,48 +425,56 @@ class LoginScreen extends Component
                                             borderBottomWidth: this.borderBottomWidth//animated
                                         }}
                                     >
+                                        
                                         <Text style={{
                                             fontSize: 20,
-                                            paddingHorizontal: 10
+                                            paddingHorizontal: 10,
+                                            marginTop:10
 
                                         }}>+91</Text>
 
                                         <TextInput
                                             keyboardType="numeric"
                                             ref="textInputMobile"
-                                            style={{ flex: 1, fontSize: 20 }}
+                                            style={{ flex: 1, fontSize: 20, color:'navy' }}
                                             placeholder={this.state.placeholderText}
                                             underlineColorAndroid="transparent"
                                             onChangeText={text=>this.setText(text)}
                                             defaultValue={this.state.text}
+                                            
                                         />
+                                        
                                     </Animated.View>
 
                                     
                                 </Animated.View>
                             </TouchableOpacity>
-                            
+                            </ImageBackground>
                         </Animated.View>
+                        
                         <View
                             style={{
                                 height: 70,
                                 backgroundColor: 'white',
                                 alignItems: 'flex-start',
                                 justifyContent: 'center',
-                                borderTopColor: '#e8e8ec',
-                                borderTopWidth: 1,
+                                //borderTopColor: '#e8e8ec',
+                                borderTopWidth: 0,
                                 paddingHorizontal: 25,
                             }}
                         >
+                            
                             <Text
                                 style={{
-                                    color: '#5a7fdf', fontWeight: 'bold', fontSize:20
+                                    color: '#5a7fdf', fontWeight: 'bold', fontSize:20, fontFamily:'monospace'
                                 }}
                                 onPress={()=>{this.props.navigation.navigate('admin')}}
                             >
                                 Proceed to check Trails..
-                            </Text>                   
+                            </Text>      
+                                        
                         </View>
+                          
                     </Animatable.View>
                 </ImageBackground>
 

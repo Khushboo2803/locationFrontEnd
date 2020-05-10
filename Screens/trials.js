@@ -24,6 +24,7 @@ async function checkifExist(text, props)
              data = JSON.parse(data);
              cord.push({ latitude: data.lat, longitude: data.lon }); 
          });
+         BackHandler.removeEventListener("hardwareBackPress", backAction);
          navigation.navigate('location', { address, cord });
      }
      else{
