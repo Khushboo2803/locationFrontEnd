@@ -1,16 +1,19 @@
+/* This file contains all the functions used throughout except those which are related to database*/
 import React, { useState } from 'react';
-import { Text, View, Alert, TouchableOpacity, Linking, PermissionsAndroid, NativeModules, NativeEventEmitter } from 'react-native';
-import * as Permissions from 'expo-permissions';
-import * as Location from 'expo-location';
+import 
+{ Text,
+  View, 
+  Alert, 
+  TouchableOpacity, 
+  Linking, 
+  PermissionsAndroid, 
+  NativeModules, 
+  NativeEventEmitter } from 'react-native';
 import db from './dbhandler.js';
 import Geolocation from '@react-native-community/geolocation';
 import AsyncStorage from '@react-native-community/async-storage';
-import BleManager from 'react-native-ble-manager';
 
 ('react-native link @react-native-community/geolocation');
-
-const BleManagerModule = NativeModules.BleManager;
-const bleManagerEmitter = new NativeEventEmitter(BleManagerModule);
 
 class fun extends React.Component {
   constructor(props) {
@@ -35,6 +38,7 @@ class fun extends React.Component {
   addressArray = [[], [], []];
   AddressName = [];
 
+  //check if number entered is of correct format or not 
   checkPhoneFormat(phone_number) {
     if (phone_number > 999999999 && phone_number <= 9999999999) {
       phone = phone_number;

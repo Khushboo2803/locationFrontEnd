@@ -72,8 +72,10 @@ class BlinkingClass extends React.Component {
   }
 }
 
+
 export default (props) => {
    useEffect(() => {
+     
     BackHandler.addEventListener("hardwareBackPress", backAction);
     return () =>
       BackHandler.removeEventListener("hardwareBackPress", backAction);

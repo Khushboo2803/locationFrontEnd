@@ -1,11 +1,14 @@
 import React , {useState, useEffect} from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
 import { createDrawerNavigator, DrawerItemList, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import Animate from './Animate.js';
 import AsyncStorage from "@react-native-community/async-storage";
 import { TouchableOpacity, ScrollView, State } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Feed from './ble.js';
 
+const Width=Dimensions.get('window').width;
+const Height=Dimensions.get('window').height;
 const CustomDrawerView = (props) =>{
   const [user, setUser] = useState('0');
   
@@ -47,21 +50,15 @@ const CustomDrawerView = (props) =>{
   </SafeAreaView>
   );
 }
-function Feed() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Feed Screen</Text>
-    </View>
-  );
-}
 
-function Article() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Article Screen</Text>
-    </View>
-  );
-}
+ function Article() {
+   return (
+     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+       <Text>Article Screen</Text>
+     </View>
+   );
+ }
+
 
 const Drawer = createDrawerNavigator();
 
@@ -76,9 +73,9 @@ export default function App(props) {
      }}
      drawerContent={props=> <CustomDrawerView {...props} />}
     >
-    <Drawer.Screen name="Nimate" component={Animate} />
+    <Drawer.Screen name="Home screen" component={Animate} />
     <Drawer.Screen name="NearBy Bluetooth" component={Feed} />
-    <Drawer.Screen name="Socio Graph" component={Article} />
+    <Drawer.Screen name="Social graph" component={Article} />
     
   </Drawer.Navigator>
 

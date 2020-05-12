@@ -106,7 +106,8 @@ class LoginScreen extends Component
             console.log('The user refuse to enable bluetooth');
             return "error enabling bluetooth";
           });
-      	console.log('bluetooth is =>', bluetooth);
+          console.log('bluetooth is =>', bluetooth);
+          
         let result =await AsyncStorage.getItem('user');
         console.log("user", result);
         if(result=='' || result==null)
@@ -119,6 +120,8 @@ class LoginScreen extends Component
               await fun.startLoc(result);
         }
     }
+
+    
 
     keyboardWillShow = (event) => {
         if (Platform.OS == 'android') {
