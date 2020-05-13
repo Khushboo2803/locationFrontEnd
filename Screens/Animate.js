@@ -1,9 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Animated, View, StyleSheet, Alert, PanResponder, Text, Image, TouchableOpacity, ActivityIndicator, BackHandler, ImageBackground, Dimensions } from "react-native";
-import * as SecureStore from 'expo-secure-store';
 import AsyncStorage from "@react-native-community/async-storage";
-import draw from './bluetooth.js';
+import nearble from './ble';
+import fun from '../functions/fun.js';
 
+const b=require('./ble.js');
 async function deleteToken(props)
 {
   const { navigation } = props;
@@ -64,7 +65,7 @@ class BlinkingClass extends React.Component {
         textAlign: 'center',
         color: 'white',
         fontSize: 25,
-        marginTop:'135%',
+        marginTop:height*0.69,
         fontFamily: 'sans-serif-light'
        }}>{display}</Text>
       </View>
@@ -74,15 +75,15 @@ class BlinkingClass extends React.Component {
 
 
 export default (props) => {
+  const [user, getUser]=useState('');
    useEffect(() => {
-     
+    
     BackHandler.addEventListener("hardwareBackPress", backAction);
     return () =>
       BackHandler.removeEventListener("hardwareBackPress", backAction);
   }, []);
   const { navigation } = props;
   
-
   return (
    <ImageBackground source={require('../assets/loginbg.jpg')} style={{
      height: '100%',
@@ -97,14 +98,14 @@ export default (props) => {
         height:40,
         width:40,
         marginTop:0,
-        marginLeft:'5%'
+        marginLeft:width*0.05
       }}
     />
     <Text style={{
       fontSize:16,
       fontWeight:'bold',
       color:'darkgray',
-      marginLeft:'3%',
+      marginLeft:width*0.03,
       fontFamily:'monospace'
     }}>Slide this way...</Text>
     </View>
@@ -114,19 +115,18 @@ export default (props) => {
       style={{
         height:60,
         width:60,
-        marginLeft:'52%',
+        marginLeft:'50%',
         borderBottomLeftRadius:9
       }}
       />
       <Text
       style={{
-        height:60,
-        width:60,
-        marginLeft:'54%',
-        borderBottomLeftRadius:9,
+        height:40,
+        width:80,
+        marginLeft:'50%',
         color:'red',
         fontWeight:'bold'
-      }}>LogOut</Text>  
+      }}>sign-out </Text>  
     </TouchableOpacity>  
     
     </View>

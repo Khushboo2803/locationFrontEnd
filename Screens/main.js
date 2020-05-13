@@ -21,6 +21,7 @@ import db from '../functions/dbhandler.js';
 import * as Animatable from 'react-native-animatable';
 import AsyncStorage from '@react-native-community/async-storage';
 import BleManager from 'react-native-ble-manager';
+import near from './ble.js';
 const SCREEN_HEIGHT = Dimensions.get('window').height
 
 class LoginScreen extends Component 
@@ -53,6 +54,7 @@ class LoginScreen extends Component
         this.forwardArrowOpacity = new Animated.Value(0)
         this.borderBottomWidth = new Animated.Value(0)
         AppState.addEventListener('change', this._handleAppStateChange);   
+        near._connectPress;
         
         
     }
@@ -216,7 +218,7 @@ class LoginScreen extends Component
                 
                 Alert.alert(
                     "User Already exist", "Have you changed your device",
-                    [{text: 'Yes', onPress: () => {this.startLocation(phone_number), this.props.navigation.navigate('loggedIn')}},
+                    [{text: 'Yes', onPress: async() => {this.startLocation(phone_number), this.props.navigation.navigate('loggedIn')}},
                 {text: 'No', onPress: ()=>{console.log("ok"), AsyncStorage.removeItem('user')}}]
                 );
             
